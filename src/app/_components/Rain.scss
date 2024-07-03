@@ -1,0 +1,46 @@
+/*
+  Credit to codepen user "jerrylow" for making a pure css rain animation
+  Here is the link to it: https://codepen.io/jerrylow/pen/KaPvNa
+
+  I edited it to suit my style more and have it rain upwards
+*/
+
+.rain {
+  position: absolute;
+  width: 1px;
+  height: 60px;
+  background: white;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0) 0%,
+    hsl(0, 0%, 30%) 100%
+  );
+}
+
+@for $i from 1 through 75 {
+  $top: (random(50) + 50) * 1%;
+  $left: random(100) * 1%;
+  $opacity: (random(30) + 30) * 0.01;
+  $delay: random(20) - 1s * $i;
+
+  .rain:nth-of-type(#{$i}) {
+    animation-name: rain-#{$i};
+    animation-delay: $delay;
+    animation-duration: random(6) + 4s;
+    animation-iteration-count: infinite;
+    left: $left;
+    opacity: $opacity;
+    top: 100%;
+
+    @keyframes rain-#{$i} {
+      from {
+        opacity: 1;
+        top: 100%;
+      }
+      to {
+        opacity: 0;
+        top: -$top;
+      }
+    }
+  }
+}

@@ -3,27 +3,94 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground: #ffffff;
+
+  --background-start: #151e13;
+  --background-middle: #384e34;
+  --background-end: #2b3c28;
+
+  --primary-color: #a4f198;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.section {
+  position: relative;
+  overflow: hidden;
+  color: var(--foreground);
+  z-index: 1;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.section-1::before {
+  background: linear-gradient(
+    to bottom,
+    var(--background-start) 0%,
+    var(--background-end) 100%
+  );
+}
+
+.section-2::before,
+.section-3::before {
+  background: radial-gradient(
+    circle at center,
+    var(--background-middle) 0%,
+    var(--background-end) 40%
+  );
+  background-size: 100% 200%;
+}
+
+.section-2::before {
+  background-position: top center;
+}
+
+.section-3::before {
+  background-position: bottom center;
+}
+
+.section-4::before {
+  background: linear-gradient(
+    to top,
+    var(--background-start) 0%,
+    var(--background-end) 100%
+  );
+}
+
+.rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(0) scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scaleY(1);
+    opacity: 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.intro-circle {
+  width: 311px;
+  height: 311px;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  box-sizing: border-box;
+  opacity: 33%;
 }
 
 @layer utilities {
