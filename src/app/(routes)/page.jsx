@@ -8,7 +8,7 @@ import SectionStory from "../_components/SectionStory";
 
 export default function Home() {
   return (
-    <main className="h-screen relative snap-y snap-mandatory overflow-y-scroll">
+    <main className="h-screen w-screen relative snap-y snap-mandatory overflow-x-hidden overflow-y-scroll">
       <section className="h-screen snap-start section section-1">
         <SectionIntro />
         <Rain />
@@ -34,6 +34,12 @@ export default function Home() {
         <Rain />
         <ArrowUp />
       </section>
+
+      <>
+        <p className="intro-circle intro-circle-middle"></p>
+        <p className="intro-circle -top-20 -right-28"></p>
+        <p className="intro-circle -bottom-20 -left-28"></p>
+      </>
     </main>
   );
 }

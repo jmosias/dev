@@ -19,10 +19,6 @@ export default function SectionIntro() {
           <h3 className="font-special uppercase text-8xl">JM OSIAS</h3>
         </span>
       </div>
-
-      <p className="intro-circle absolute"></p>
-      <p className="intro-circle absolute -bottom-20 -left-28"></p>
-      <p className="intro-circle absolute -top-20 -right-28"></p>
     </div>
   );
 }
