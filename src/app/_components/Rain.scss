@@ -21,12 +21,12 @@
   $top: (random(50) + 50) * 1%;
   $left: random(100) * 1%;
   $opacity: (random(30) + 30) * 0.01;
-  $delay: random(20) - 1s * $i;
+  $delay: random(2) - 1.5s * $i;
 
   .rain:nth-of-type(#{$i}) {
     animation-name: rain-#{$i};
     animation-delay: $delay;
-    animation-duration: random(6) + 4s;
+    animation-duration: random(2);
     animation-iteration-count: infinite;
     left: $left;
     opacity: $opacity;

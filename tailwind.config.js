@@ -18,8 +18,9 @@ module.exports = {
       letterSpacing: {
         special: "0.5em",
       },
-      textColor: {
+      colors: {
         primary: "var(--primary-color)",
+        foreground: "var(--foreground)",
       },
     },
   },

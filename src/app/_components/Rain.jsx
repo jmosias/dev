@@ -12,7 +12,7 @@ const Rain = () => {
           className="rain"
           style={{
             left: `${Math.random() * 100}%`,
-            animationDuration: `${Math.random() * 6 + 4}s`,
+            animationDuration: `${Math.random() * 6 + 1}s`,
             animationDelay: `${Math.random() * 2 - 1}s`,
           }}
         />

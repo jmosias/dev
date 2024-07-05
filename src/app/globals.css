@@ -12,6 +12,86 @@
   --primary-color: #a4f198;
 }
 
+.nav-pos-right,
+.nav-pos-top,
+.nav-pos-left,
+.nav-pos-bottom {
+  transition: all 0.5s ease;
+}
+
+.nav-pos-right {
+  top: 50%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-pos-top {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-pos-top ul {
+  flex-direction: row;
+  column-gap: 3rem;
+}
+
+.nav-pos-top ul li {
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.nav-pos-top ul li:nth-child(2),
+.nav-pos-top ul li:nth-child(3) {
+  margin-left: 0;
+  margin-bottom: 2rem;
+}
+
+.nav-pos-top ul li p {
+  margin-left: 0.5em;
+}
+
+.nav-pos-left {
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-pos-left ul li {
+  flex-direction: row-reverse;
+}
+
+.nav-pos-left ul li:nth-child(2),
+.nav-pos-left ul li:nth-child(3) {
+  margin-right: 1rem;
+}
+
+.nav-pos-bottom {
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-pos-bottom ul {
+  flex-direction: row;
+  column-gap: 3rem;
+}
+
+.nav-pos-bottom ul li {
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.nav-pos-bottom ul li:nth-child(1),
+.nav-pos-bottom ul li:nth-child(4) {
+  margin-left: 0;
+  margin-bottom: 2rem;
+}
+
+.nav-pos-bottom ul li p {
+  margin-left: 0.5em;
+}
+
 .section {
   position: relative;
   overflow: hidden;
@@ -62,6 +142,44 @@
   );
 }
 
+.diamond-filled {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  transition: background-color 0.15s ease;
+}
+
+.diamond-filled .diamond-outline {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--foreground);
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  transition: opacity 0.15s ease;
+}
+
+.diamond-link {
+  transition: color 0.15s ease;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.intro-circle {
+  position: absolute;
+  pointer-events: none;
+  width: 311px;
+  height: 311px;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  box-sizing: border-box;
+  opacity: 33%;
+}
+
 .rain-container {
   position: absolute;
   top: 0;
@@ -81,23 +199,6 @@
     transform: translateY(-100vh) scaleY(1);
     opacity: 0;
   }
-}
-
-.intro-circle {
-  position: absolute;
-  pointer-events: none;
-  width: 311px;
-  height: 311px;
-  border: 3px solid var(--primary-color);
-  border-radius: 50%;
-  box-sizing: border-box;
-  opacity: 33%;
-}
-
-.intro-circle-middle {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 @layer utilities {
