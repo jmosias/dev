@@ -1,8 +1,6 @@
 "use client";
 
 import Rain from "../_components/Rain";
-import ArrowUp from "../_components/ArrowUp";
-import ArrowDown from "../_components/ArrowDown";
 import SectionIntro from "../_components/SectionIntro";
 import SectionProjects from "../_components/SectionProjects";
 import SectionExperience from "../_components/SectionExperience";
