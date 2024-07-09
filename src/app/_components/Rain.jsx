@@ -1,7 +1,7 @@
 import React from "react";
 import "./Rain.scss";
 
-const NUM_RAINDROPS = 75;
+const NUM_RAINDROPS = 50;
 
 const Rain = () => {
   return (

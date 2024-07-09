@@ -1,0 +1,699 @@
+$transition-time: 0.5s;
+$transition-timing: ease;
+
+.diamond-filled {
+  position: relative;
+  width: 0.6vw;
+  height: 0.6vw;
+  transform: rotate(45deg);
+  transition: all $transition-time $transition-timing;
+
+  .diamond-outline {
+    width: 1.2vw;
+    height: 1.2vw;
+    border: 0.16vw solid var(--foreground);
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all $transition-time $transition-timing;
+  }
+}
+
+$link-font-size: 1vw;
+$link-letter-spacing: 0.5vw;
+
+.diamond-link {
+  font-size: $link-font-size;
+  letter-spacing: $link-letter-spacing;
+  transition: all $transition-time $transition-timing;
+}
+
+$base-pos-right: 70vw;
+$base-pos-top: 10vh;
+$base-pos-left: 75vw;
+$base-pos-bottom: 80vh;
+
+$base-pos-center-v: 50vh;
+$base-pos-center-h: 50vw;
+
+$base-vertical-gap: 6vh;
+$base-horizontal-gap: 4vw;
+$base-horizontal-margin: 1.5vw;
+$base-vertical-margin: 3vh;
+
+/*
+  This padding is necessary to fix the alignment of the
+  text against the diamond when the flex direction is 
+  column
+*/
+$left-padding-fix: 0.5vw;
+
+// Character counts for each link
+$l1-cc: 5;
+$l2-cc: 8;
+$l3-cc: 10;
+$l4-cc: 5;
+
+/*
+  Formula to calculate the total width of text based on 
+  characters and font size
+  
+    width = (n × fs × wm) + ( (n − 1) × ls)
+
+  where
+  n  = numbers of character in text
+  fs = font size in vw
+  wm = average character width multiplier for fonts (0.6 average)
+  ls = letter spacing in vw
+
+  Unfortunately, due to the different browsers having
+  different calculations of viewport, the horizontal nav
+  looks a bit off center
+*/
+
+$wm: 0.75;
+
+// Total width for each link
+$l1-width: calc(
+  ($l1-cc * $link-font-size * $wm) + (($l1-cc - 1) * $link-letter-spacing) +
+    $left-padding-fix
+);
+$l2-width: calc(
+  ($l2-cc * $link-font-size * $wm) + (($l2-cc - 1) * $link-letter-spacing) +
+    $left-padding-fix
+);
+$l3-width: calc(
+  ($l3-cc * $link-font-size * $wm) + (($l3-cc - 1) * $link-letter-spacing) +
+    $left-padding-fix
+);
+$l4-width: calc(
+  ($l4-cc * $link-font-size * $wm) + (($l4-cc - 1) * $link-letter-spacing) +
+    $left-padding-fix
+);
+
+$diamond-horizontal-gap: 1.5vw;
+
+.nav-container {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+
+  ul {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      cursor: pointer;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: $diamond-horizontal-gap;
+
+      animation-duration: 0.5s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+
+      // Default position for navigation links
+      &:nth-child(1) {
+        top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+        left: $base-pos-right;
+      }
+      &:nth-child(2) {
+        top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+        left: calc($base-pos-right + $base-horizontal-margin);
+      }
+      &:nth-child(3) {
+        top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+        left: calc($base-pos-right + $base-horizontal-margin);
+      }
+      &:nth-child(4) {
+        top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+        left: $base-pos-right;
+      }
+    }
+  }
+}
+
+.right-to-top {
+  flex-direction: column-reverse;
+
+  &:nth-child(1) {
+    animation-name: rightToTop1;
+  }
+  &:nth-child(2) {
+    animation-name: rightToTop2;
+  }
+  &:nth-child(3) {
+    animation-name: rightToTop3;
+  }
+  &:nth-child(4) {
+    animation-name: rightToTop4;
+  }
+
+  p {
+    padding-left: $left-padding-fix;
+  }
+}
+
+.top-to-right {
+  &:nth-child(1) {
+    animation-name: topToRight1;
+  }
+  &:nth-child(2) {
+    animation-name: topToRight2;
+  }
+  &:nth-child(3) {
+    animation-name: topToRight3;
+  }
+  &:nth-child(4) {
+    animation-name: topToRight4;
+  }
+}
+
+.top-to-left {
+  flex-direction: row-reverse;
+
+  &:nth-child(1) {
+    animation-name: topToLeft1;
+  }
+  &:nth-child(2) {
+    animation-name: topToLeft2;
+  }
+  &:nth-child(3) {
+    animation-name: topToLeft3;
+  }
+  &:nth-child(4) {
+    animation-name: topToLeft4;
+  }
+}
+
+.left-to-top {
+  flex-direction: column-reverse;
+
+  &:nth-child(1) {
+    animation-name: leftToTop1;
+  }
+  &:nth-child(2) {
+    animation-name: leftToTop2;
+  }
+  &:nth-child(3) {
+    animation-name: leftToTop3;
+  }
+  &:nth-child(4) {
+    animation-name: leftToTop4;
+  }
+
+  p {
+    padding-left: $left-padding-fix;
+  }
+}
+
+.left-to-bottom {
+  flex-direction: column;
+
+  &:nth-child(1) {
+    animation-name: leftToBottom1;
+  }
+  &:nth-child(2) {
+    animation-name: leftToBottom2;
+  }
+  &:nth-child(3) {
+    animation-name: leftToBottom3;
+  }
+  &:nth-child(4) {
+    animation-name: leftToBottom4;
+  }
+
+  p {
+    padding-left: $left-padding-fix;
+  }
+}
+
+.bottom-to-left {
+  flex-direction: row-reverse;
+
+  &:nth-child(1) {
+    animation-name: bottomToLeft1;
+  }
+  &:nth-child(2) {
+    animation-name: bottomToLeft2;
+  }
+  &:nth-child(3) {
+    animation-name: bottomToLeft3;
+  }
+  &:nth-child(4) {
+    animation-name: bottomToLeft4;
+  }
+}
+
+/*
+  Some keyframes have the same values on inital percentages,
+  this is to delay their animation starting point for each link.
+
+  animation-delay won't work as it would add a flicker
+*/
+
+// --- RIGHT TO TOP ---
+
+@keyframes rightToTop1 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    left: $base-pos-right;
+  }
+  100% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h - $l1-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+}
+
+@keyframes rightToTop2 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+  15% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+
+  100% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes rightToTop3 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+  30% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+
+  100% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes rightToTop4 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    left: $base-pos-right;
+  }
+  45% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    left: $base-pos-right;
+  }
+
+  100% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l3-width +
+        $base-horizontal-gap
+    );
+  }
+}
+
+// --- TOP TO RIGHT ---
+
+@keyframes topToRight1 {
+  0% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h - $l1-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+  45% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h - $l1-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    left: $base-pos-right;
+  }
+}
+
+@keyframes topToRight2 {
+  0% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+  30% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+}
+
+@keyframes topToRight3 {
+  0% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+  15% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    left: calc($base-pos-right + $base-horizontal-margin);
+  }
+}
+
+@keyframes topToRight4 {
+  0% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l3-width +
+        $base-horizontal-gap
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    left: $base-pos-right;
+  }
+}
+
+// --- TOP TO LEFT ---
+
+@keyframes topToLeft1 {
+  0% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h - $l1-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+}
+
+@keyframes topToLeft2 {
+  0% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+  15% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+}
+
+@keyframes topToLeft3 {
+  0% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+  30% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+}
+
+@keyframes topToLeft4 {
+  0% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l3-width +
+        $base-horizontal-gap
+    );
+  }
+  45% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l3-width +
+        $base-horizontal-gap
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+}
+
+// --- LEFT TO TOP ---
+
+@keyframes leftToTop1 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+  45% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+
+  100% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h - $l1-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+}
+
+@keyframes leftToTop2 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+  30% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+
+  100% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h - $l2-width - ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes leftToTop3 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+  15% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+
+  100% {
+    top: calc($base-pos-top - $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes leftToTop4 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+
+  100% {
+    top: $base-pos-top;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l3-width +
+        $base-horizontal-gap
+    );
+  }
+}
+
+// --- LEFT TO BOTTOM ---
+
+@keyframes leftToBottom1 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+
+  100% {
+    top: $base-pos-bottom;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l2-width +
+        $base-horizontal-gap
+    );
+  }
+}
+
+@keyframes leftToBottom2 {
+  0% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+  15% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+
+  100% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes leftToBottom3 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+  30% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+
+  100% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h - $l3-width - ($base-horizontal-gap / 2));
+  }
+}
+
+@keyframes leftToBottom4 {
+  0% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+  45% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+
+  100% {
+    top: $base-pos-bottom;
+    left: calc(
+      $base-pos-center-h - $l2-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+}
+
+// --- BOTTOM TO LEFT ---
+
+@keyframes bottomToLeft1 {
+  0% {
+    top: $base-pos-bottom;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l2-width +
+        $base-horizontal-gap
+    );
+  }
+  45% {
+    top: $base-pos-bottom;
+    left: calc(
+      $base-pos-center-h + ($base-horizontal-gap / 2) + $l2-width +
+        $base-horizontal-gap
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+}
+
+@keyframes bottomToLeft2 {
+  0% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+  30% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h + ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v + ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+}
+
+@keyframes bottomToLeft3 {
+  0% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h - $l3-width - ($base-horizontal-gap / 2));
+  }
+  15% {
+    top: calc($base-pos-bottom + $base-vertical-margin);
+    left: calc($base-pos-center-h - $l3-width - ($base-horizontal-gap / 2));
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap / 2));
+    right: calc($base-pos-left + $base-horizontal-margin);
+    left: 0;
+  }
+}
+
+@keyframes bottomToLeft4 {
+  0% {
+    top: $base-pos-bottom;
+    left: calc(
+      $base-pos-center-h - $l2-width - $base-horizontal-gap - $l2-width -
+        ($base-horizontal-gap / 2)
+    );
+  }
+
+  100% {
+    top: calc($base-pos-center-v - ($base-vertical-gap * 1.5));
+    right: $base-pos-left;
+    left: 0;
+  }
+}

@@ -5,6 +5,16 @@
   I edited it to suit my style more and have it rain upwards
 */
 
+.rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
 .rain {
   position: absolute;
   width: 1px;
@@ -15,9 +25,21 @@
     rgba(255, 255, 255, 0) 0%,
     hsl(0, 0%, 30%) 100%
   );
+  will-change: transform, opacity;
 }
 
-@for $i from 1 through 75 {
+@keyframes rain {
+  0% {
+    transform: translateY(0) scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scaleY(1);
+    opacity: 0;
+  }
+}
+
+@for $i from 1 through 50 {
   $top: (random(50) + 50) * 1%;
   $left: random(100) * 1%;
   $opacity: (random(30) + 30) * 0.01;

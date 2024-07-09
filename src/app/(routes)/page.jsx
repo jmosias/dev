@@ -25,6 +25,7 @@ function useSectionRefs() {
 
 export default function Home() {
   const [sectionRefs, setSectionRef] = useSectionRefs();
+  const [previousSection, setPreviousSection] = useState(null);
   const [activeSection, setActiveSection] = useState("intro");
 
   const scrollToSection = async (section) => {
@@ -62,7 +63,10 @@ export default function Home() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const sectionName = entry.target.getAttribute("data-section-name");
-          setActiveSection(sectionName);
+          setActiveSection((prevActiveSection) => {
+            setPreviousSection(prevActiveSection);
+            return sectionName;
+          });
         }
       });
     };
@@ -85,6 +89,7 @@ export default function Home() {
       <Rain />
       <Navigation
         scrollToSection={scrollToSection}
+        previousSection={previousSection}
         activeSection={activeSection}
       />
 

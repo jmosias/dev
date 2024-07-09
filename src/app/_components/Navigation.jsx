@@ -1,115 +1,93 @@
-export default function Navigation({ scrollToSection, activeSection }) {
+import "./Navigation.scss";
+
+const links = [
+  {
+    name: "Intro",
+    section: "intro",
+  },
+  {
+    name: "Projects",
+    section: "projects",
+  },
+  {
+    name: "Experience",
+    section: "experience",
+  },
+  {
+    name: "Story",
+    section: "story",
+  },
+];
+
+export default function Navigation({
+  scrollToSection,
+  previousSection,
+  activeSection,
+}) {
   return (
-    <div
-      className={`z-10 absolute overflow-hidden p-2
-      ${activeSection === "intro" ? "nav-pos-right" : ""}
-      ${activeSection === "projects" ? "nav-pos-top" : ""}
-      ${activeSection === "experience" ? "nav-pos-left" : ""}
-      ${activeSection === "story" ? "nav-pos-bottom" : ""}
-      `}
-    >
-      <ul className="flex flex-col gap-4 text-foreground tracking-special font-bold uppercase">
-        <li
-          className="cursor-pointer flex gap-6 items-center"
-          onClick={() => scrollToSection("intro")}
-        >
-          <div
-            className={`diamond-filled ${
-              activeSection === "intro" ? "bg-primary" : "bg-foreground"
-            }`}
+    <div className={`nav-container`}>
+      <ul className="text-foreground font-bold uppercase">
+        {links.map((link) => (
+          <li
+            key={link.section}
+            // Animations
+            className={`
+            ${
+              activeSection === "projects" && previousSection === "intro"
+                ? "right-to-top"
+                : ""
+            }
+            ${
+              activeSection === "intro" && previousSection === "projects"
+                ? "top-to-right"
+                : ""
+            }
+            ${
+              activeSection === "experience" && previousSection === "projects"
+                ? "top-to-left"
+                : ""
+            }
+            ${
+              activeSection === "projects" && previousSection === "experience"
+                ? "left-to-top"
+                : ""
+            }
+            ${
+              activeSection === "story" && previousSection === "experience"
+                ? "left-to-bottom"
+                : ""
+            }
+            ${
+              activeSection === "experience" && previousSection === "story"
+                ? "bottom-to-left"
+                : ""
+            }
+          `}
+            onClick={() => scrollToSection(link.section)}
           >
             <div
-              className={`diamond-outline ${
-                activeSection === "intro" ? "" : "opacity-0"
+              className={`diamond-filled ${
+                activeSection === link.section ? "bg-primary" : "bg-foreground"
               }`}
-            ></div>
-          </div>
+            >
+              <div
+                className={`diamond-outline ${
+                  activeSection === link.section ? "" : "opacity-0"
+                }`}
+              ></div>
+            </div>
 
-          <p
-            className={`diamond-link ${
-              activeSection === "intro" ? "text-primary" : "text-foreground"
-            }`}
-          >
-            Intro
-          </p>
-        </li>
-
-        <li
-          className="ml-4 cursor-pointer flex gap-6 items-center"
-          onClick={() => scrollToSection("projects")}
-        >
-          <div
-            className={`diamond-filled ${
-              activeSection === "projects" ? "bg-primary" : "bg-foreground"
-            }`}
-          >
-            <div
-              className={`diamond-outline ${
-                activeSection === "projects" ? "" : "opacity-0"
+            <p
+              className={`diamond-link ${
+                activeSection === link.section
+                  ? "text-primary"
+                  : "text-foreground"
               }`}
-            ></div>
-          </div>
-
-          <p
-            className={`diamond-link ${
-              activeSection === "projects" ? "text-primary" : "text-foreground"
-            }`}
-          >
-            Projects
-          </p>
-        </li>
-
-        <li
-          className="ml-4 cursor-pointer flex gap-6 items-center"
-          onClick={() => scrollToSection("experience")}
-        >
-          <div
-            className={`diamond-filled ${
-              activeSection === "experience" ? "bg-primary" : "bg-foreground"
-            }`}
-          >
-            <div
-              className={`diamond-outline ${
-                activeSection === "experience" ? "" : "opacity-0"
-              }`}
-            ></div>
-          </div>
-
-          <p
-            className={`diamond-link ${
-              activeSection === "experience"
-                ? "text-primary"
-                : "text-foreground"
-            }`}
-          >
-            Experience
-          </p>
-        </li>
-
-        <li
-          className="cursor-pointer flex gap-6 items-center"
-          onClick={() => scrollToSection("story")}
-        >
-          <div
-            className={`diamond-filled ${
-              activeSection === "story" ? "bg-primary" : "bg-foreground"
-            }`}
-          >
-            <div
-              className={`diamond-outline ${
-                activeSection === "story" ? "" : "opacity-0"
-              }`}
-            ></div>
-          </div>
-
-          <p
-            className={`diamond-link ${
-              activeSection === "story" ? "text-primary" : "text-foreground"
-            }`}
-          >
-            Story
-          </p>
-        </li>
+            >
+              {link.name}
+            </p>
+          </li>
+        ))}
       </ul>
     </div>
   );
