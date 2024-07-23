@@ -1,0 +1,207 @@
+.card {
+  cursor: pointer;
+  width: 16vw;
+  height: 24vw;
+  perspective: 72vw;
+
+  .inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+  }
+
+  &:hover .inner {
+    transform: rotateY(180deg);
+  }
+
+  &.flipped:hover .inner {
+    transform: rotateY(0);
+  }
+
+  &.flipped .inner {
+    transform: rotateY(180deg);
+  }
+
+  .front,
+  .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 0.2vw;
+  }
+
+  .back {
+    transform: rotateY(180deg);
+  }
+
+  .front-design {
+    padding: 1vw;
+    width: 100%;
+    height: 100%;
+
+    .front-design-inner {
+      width: 100%;
+      height: 100%;
+      border-width: 0.12vw;
+      border-style: solid;
+      border-radius: 0.2vw;
+    }
+
+    .card-power {
+      $container-size: 2vw;
+      $postion: -0.3vw;
+      width: $container-size;
+      height: $container-size;
+      top: $postion;
+      left: $postion;
+    }
+
+    .front-design-desc {
+      position: relative;
+      padding: 0.6vw 0;
+
+      // Trapezoid Design
+      &::before {
+        content: "";
+        position: absolute;
+        top: -0.6vw;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+        height: 0.8vw;
+        background-color: var(--background-start);
+        clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%);
+      }
+    }
+  }
+
+  // Everything below is for the back of the card
+
+  .line {
+    height: 15px;
+    width: 2px;
+  }
+
+  $size: 4vw;
+
+  &:nth-child(1) {
+    .logo-container {
+      position: relative;
+      width: $size;
+      height: $size;
+
+      // Circle
+      .shape {
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        position: absolute;
+        opacity: 33%;
+
+        &.s1 {
+          background-color: var(--primary);
+          left: calc($size / -8);
+        }
+
+        &.s2 {
+          background-color: var(--primary);
+          left: calc($size / 8);
+        }
+      }
+    }
+  }
+
+  &:nth-child(2) {
+    $diamond-height: calc($size * sqrt(3) / 2);
+
+    .logo-container {
+      position: relative;
+      width: $diamond-height;
+      height: $diamond-height;
+
+      // Diamond
+      .shape {
+        width: $diamond-height;
+        height: $diamond-height;
+        background-color: var(--primary);
+        position: absolute;
+        opacity: 33%;
+        transform: rotate(45deg);
+
+        &.s1 {
+          left: calc($size / 12);
+        }
+
+        &.s2 {
+          left: calc($size / -12);
+        }
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    $triangle-height: calc($size * sqrt(3) / 2);
+
+    .logo-container {
+      position: relative;
+      width: $size;
+      height: $triangle-height;
+
+      // Upside Down Triangle
+      .shape {
+        width: 0;
+        height: 0;
+        border-left: $size / 2 solid transparent;
+        border-right: $size / 2 solid transparent;
+        border-bottom: $triangle-height solid var(--primary);
+        position: absolute;
+        opacity: 33%;
+
+        &.s1 {
+          top: 0;
+          left: calc($size / -8);
+          transform: rotate(180deg);
+        }
+
+        &.s2 {
+          top: 0;
+          left: calc($size / 8);
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &:nth-child(4) {
+    $rect-height: calc($size * 0.75);
+    $rect-width: calc($rect-height * 1.5);
+
+    .logo-container {
+      position: relative;
+      width: $rect-width;
+      height: $size;
+
+      // Rectangle
+      .shape {
+        width: $rect-width;
+        height: $rect-height;
+        background-color: var(--primary);
+        position: absolute;
+        opacity: 33%;
+
+        &.s1 {
+          top: calc($rect-height / 4);
+          left: calc($rect-width / 20);
+        }
+
+        &.s2 {
+          bottom: calc($rect-height / 4);
+          left: calc($rect-width / -20);
+        }
+      }
+    }
+  }
+}

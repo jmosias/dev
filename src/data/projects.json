@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0",
+    "name": "Osias",
+    "short_description": "Dev Portfolio",
+    "card_image": "/images/temporary.png"
+  },
+  {
+    "id": "1",
+    "name": "Becric",
+    "short_description": "Gaming Portal Website",
+    "card_image": "/images/temporary.png"
+  },
+  {
+    "id": "2",
+    "name": "Wisp",
+    "short_description": "Image Editing Assistant",
+    "card_image": "/images/temporary.png"
+  },
+  {
+    "id": "3",
+    "name": "DCFH",
+    "short_description": "Online Doughnut Shop",
+    "card_image": "/images/temporary.png"
+  }
+]

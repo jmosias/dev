@@ -8,6 +8,8 @@ import SectionStory from "../_components/SectionStory";
 import Navigation from "../_components/Navigation";
 import { useEffect, useRef, useState } from "react";
 
+import projectsData from "../../data/projects.json";
+
 function useSectionRefs() {
   const sectionRefs = useRef({
     intro: null,
@@ -107,7 +109,7 @@ export default function Home() {
           data-section-name="projects"
           className="h-screen snap-start section section-2"
         >
-          <SectionProjects />
+          <SectionProjects projects={projectsData} />
         </section>
 
         <section
@@ -126,11 +128,9 @@ export default function Home() {
           <SectionStory />
         </section>
 
-        <>
-          <p className="intro-circle top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></p>
-          <p className="intro-circle -top-20 -right-28"></p>
-          <p className="intro-circle -bottom-20 -left-28"></p>
-        </>
+        <div className="intro-circle top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="intro-circle -top-20 -right-28"></div>
+        <div className="intro-circle -bottom-20 -left-28"></div>
       </main>
     </>
   );

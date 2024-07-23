@@ -15,7 +15,7 @@
   --background-middle: #384e34;
   --background-end: #2b3c28;
 
-  --primary-color: #a4f198;
+  --primary: #a4f198;
 } */
 
 /* Phoenix theme */
@@ -26,7 +26,7 @@
   --background-middle: #330e0e;
   --background-end: #290909;
 
-  --primary-color: #e25822;
+  --primary: #e25822;
 }
 
 /* Sea theme */
@@ -37,7 +37,7 @@
   --background-middle: #00796b;
   --background-end: #004d40;
 
-  --primary-color: #00bfa5;
+  --primary: #00bfa5;
 } */
 
 .section {
@@ -96,7 +96,7 @@
   pointer-events: none;
   width: 311px;
   height: 311px;
-  border: 3px solid var(--primary-color);
+  border: 3px solid var(--primary);
   border-radius: 50%;
   box-sizing: border-box;
   opacity: 33%;

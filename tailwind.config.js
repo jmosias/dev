@@ -19,8 +19,11 @@ module.exports = {
         special: "0.5em",
       },
       colors: {
-        primary: "var(--primary-color)",
+        primary: "var(--primary)",
         foreground: "var(--foreground)",
+        "background-start": "var(--background-start)",
+        "background-middle": "var(--background-middle)",
+        "background-end": "var(--background-end)",
       },
     },
   },
