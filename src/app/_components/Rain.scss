@@ -22,8 +22,8 @@
   background: white;
   background: linear-gradient(
     to top,
-    rgba(255, 255, 255, 0) 0%,
-    hsl(0, 0%, 30%) 100%
+    var(--background-start) 0%,
+    rgba(226, 88, 34, 0.3) 100%
   );
   will-change: transform, opacity;
 }

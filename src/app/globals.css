@@ -2,23 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  I can't decide which theme to use yet, so
-  these will stay here for now
-*/
-
-/* Green theme */
-/* :root {
-  --foreground: #ffffff;
-
-  --background-start: #151e13;
-  --background-middle: #384e34;
-  --background-end: #2b3c28;
-
-  --primary: #a4f198;
-} */
-
-/* Phoenix theme */
 :root {
   --foreground: #ffffff;
 
@@ -28,17 +11,6 @@
 
   --primary: #e25822;
 }
-
-/* Sea theme */
-/* :root {
-  --foreground: #ffffff;
-
-  --background-start: #002b36;
-  --background-middle: #00796b;
-  --background-end: #004d40;
-
-  --primary: #00bfa5;
-} */
 
 .section {
   position: relative;

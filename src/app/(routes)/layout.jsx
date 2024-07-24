@@ -1,7 +1,7 @@
 import { Raleway, Buda } from "next/font/google";
 import "../globals.css";
 
-const raleway = Raleway({ subsets: ["latin"] });
+const raleway = Raleway({ weight: ["200", "400", "700"], subsets: ["latin"] });
 const buda = Buda({
   weight: "300",
   subsets: ["latin"],
@@ -12,6 +12,12 @@ export const metadata = {
   title: "JS Dev - John Mark Osias",
   description:
     "Web portfolio of John Mark Osias - A full stack javascript developer specializing in React.js and Node.js",
+  links: [
+    {
+      rel: "stylesheet",
+      href: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css",
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {

@@ -9,6 +9,7 @@ import Navigation from "../_components/Navigation";
 import { useEffect, useRef, useState } from "react";
 
 import projectsData from "../../data/projects.json";
+import skillsData from "../../data/skills.json";
 
 function useSectionRefs() {
   const sectionRefs = useRef({
@@ -117,7 +118,7 @@ export default function Home() {
           data-section-name="experience"
           className="h-screen snap-start section section-3"
         >
-          <SectionExperience />
+          <SectionExperience skills={skillsData} />
         </section>
 
         <section
