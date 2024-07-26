@@ -22,8 +22,16 @@ module.exports = {
         primary: "var(--primary)",
         foreground: "var(--foreground)",
         "background-start": "var(--background-start)",
+        "background-start-tp": "var(--background-start-tp)",
         "background-middle": "var(--background-middle)",
         "background-end": "var(--background-end)",
+      },
+      transitionProperty: {
+        opacity: "opacity",
+      },
+      opacity: {
+        0: "0",
+        100: "1",
       },
     },
   },

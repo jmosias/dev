@@ -1,0 +1,44 @@
+[
+  {
+    "id": "0",
+    "script": "A rubik's cube, a chessboard, and a computer. Curiosity sparked my journey with programming and problem-solving.",
+    "image": "/images/story_scenes/room_day.jpg",
+    "description": "A cozy bedroom during the day"
+  },
+  {
+    "id": "1",
+    "script": "At 13, I began scripting and modding games, spending several years teaching myself various programming languages, focusing on web development.",
+    "image": "/images/story_scenes/room_afternoon.jpg",
+    "description": "A cozy bedroom during the afternoon"
+  },
+  {
+    "id": "2",
+    "script": "Eventually, I pursued formal education in Information Technology, studying for two years before transitioning into the professional world.",
+    "image": "/images/story_scenes/school.jpg",
+    "description": "A school front building during the afternoon"
+  },
+  {
+    "id": "3",
+    "script": "So far, I've gained two years of professional experience on frontend development, and a year on backend.",
+    "image": "/images/story_scenes/corporate.jpg",
+    "description": "Corporate buildings during the night"
+  },
+  {
+    "id": "4",
+    "script": "Outside of work, I enjoy chess, video games, and writing stories for visual novels and games. These moments are shared with my cats, Loki and Sypha.",
+    "image": "/images/story_scenes/living_room.jpg",
+    "description": "A cozy living room during the night"
+  },
+  {
+    "id": "5",
+    "script": "Looking ahead, I envision a future where I develop games and write stories while maintaining my web development expertise.",
+    "image": "/images/story_scenes/room_night.jpg",
+    "description": "A cozy bedroom during the night"
+  },
+  {
+    "id": "6",
+    "script": "The journey continues, and thank you for stopping by...",
+    "image": "/images/story_scenes/train.jpg",
+    "description": "Inside the train during noon"
+  }
+]

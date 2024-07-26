@@ -1,0 +1,15 @@
+{
+  "title": "Beyond",
+  "subtitle": "A short story of my programming journey",
+
+  "music_loop_src": "/audio/the_stars_are_far.mp3",
+
+  "bg_main_menu": {
+    "image": "/images/story_scenes/street_sunrise.jpg",
+    "description": "Street view during sunrise"
+  },
+  "bg_credits": {
+    "image": "/images/story_scenes/street_evening.jpg",
+    "description": "Street view during evening"
+  }
+}

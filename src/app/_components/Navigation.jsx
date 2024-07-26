@@ -2,20 +2,20 @@ import "./Navigation.scss";
 
 const links = [
   {
-    name: "Intro",
-    section: "intro",
+    name: "Journey",
+    section: "section-1",
   },
   {
     name: "Projects",
-    section: "projects",
+    section: "section-2",
   },
   {
     name: "Experience",
-    section: "experience",
+    section: "section-3",
   },
   {
-    name: "Story",
-    section: "story",
+    name: "Connect",
+    section: "section-4",
   },
 ];
 
@@ -33,32 +33,32 @@ export default function Navigation({
             // Animations
             className={`
             ${
-              activeSection === "projects" && previousSection === "intro"
+              activeSection === "section-2" && previousSection === "section-1"
                 ? "right-to-top"
                 : ""
             }
             ${
-              activeSection === "intro" && previousSection === "projects"
+              activeSection === "section-1" && previousSection === "section-2"
                 ? "top-to-right"
                 : ""
             }
             ${
-              activeSection === "experience" && previousSection === "projects"
+              activeSection === "section-3" && previousSection === "section-2"
                 ? "top-to-left"
                 : ""
             }
             ${
-              activeSection === "projects" && previousSection === "experience"
+              activeSection === "section-2" && previousSection === "section-3"
                 ? "left-to-top"
                 : ""
             }
             ${
-              activeSection === "story" && previousSection === "experience"
+              activeSection === "section-4" && previousSection === "section-3"
                 ? "left-to-bottom"
                 : ""
             }
             ${
-              activeSection === "experience" && previousSection === "story"
+              activeSection === "section-3" && previousSection === "section-4"
                 ? "bottom-to-left"
                 : ""
             }

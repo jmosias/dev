@@ -36,8 +36,8 @@ export default function ProjectCard({ project }) {
           <div className="symbols flex-1 flex flex-col items-center justify-evenly">
             <div className="line bg-primary opacity-30"></div>
             <div className="logo-container">
-              <div class="shape s1"></div>
-              <div class="shape s2"></div>
+              <div className="shape s1"></div>
+              <div className="shape s2"></div>
             </div>
             <div className="line bg-primary opacity-30"></div>
           </div>

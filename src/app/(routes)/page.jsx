@@ -1,22 +1,25 @@
 "use client";
 
 import Rain from "../_components/Rain";
-import SectionIntro from "../_components/SectionIntro";
+import SectionStory from "../_components/SectionStory";
 import SectionProjects from "../_components/SectionProjects";
 import SectionExperience from "../_components/SectionExperience";
-import SectionStory from "../_components/SectionStory";
+import SectionConnect from "../_components/SectionIntro";
 import Navigation from "../_components/Navigation";
 import { useEffect, useRef, useState } from "react";
 
+import scenesData from "../../data/story_scenes.json";
+import creditsData from "../../data/story_scenes_credits.json";
+import storyMetadata from "../../data/story_scenes_metadata.json";
 import projectsData from "../../data/projects.json";
 import skillsData from "../../data/skills.json";
 
 function useSectionRefs() {
   const sectionRefs = useRef({
-    intro: null,
-    projects: null,
-    experience: null,
-    story: null,
+    "section-1": null,
+    "section-2": null,
+    "section-3": null,
+    "section-4": null,
   });
 
   const setSectionRef = (key, node) => {
@@ -29,7 +32,7 @@ function useSectionRefs() {
 export default function Home() {
   const [sectionRefs, setSectionRef] = useSectionRefs();
   const [previousSection, setPreviousSection] = useState(null);
-  const [activeSection, setActiveSection] = useState("intro");
+  const [activeSection, setActiveSection] = useState("section-1");
 
   const scrollToSection = async (section) => {
     await smoothScrollTo(sectionRefs.current[section]);
@@ -98,40 +101,40 @@ export default function Home() {
 
       <main className="h-screen w-screen relative snap-y snap-mandatory overflow-x-hidden overflow-y-scroll">
         <section
-          ref={(node) => setSectionRef("intro", node)}
-          data-section-name="intro"
+          ref={(node) => setSectionRef("section-1", node)}
+          data-section-name="section-1"
           className="h-screen snap-start section section-1"
         >
-          <SectionIntro />
+          <SectionStory
+            scenes={scenesData}
+            credits={creditsData}
+            metadata={storyMetadata}
+          />
         </section>
 
         <section
-          ref={(node) => setSectionRef("projects", node)}
-          data-section-name="projects"
+          ref={(node) => setSectionRef("section-2", node)}
+          data-section-name="section-2"
           className="h-screen snap-start section section-2"
         >
           <SectionProjects projects={projectsData} />
         </section>
 
         <section
-          ref={(node) => setSectionRef("experience", node)}
-          data-section-name="experience"
+          ref={(node) => setSectionRef("section-3", node)}
+          data-section-name="section-3"
           className="h-screen snap-start section section-3"
         >
           <SectionExperience skills={skillsData} />
         </section>
 
         <section
-          ref={(node) => setSectionRef("story", node)}
-          data-section-name="story"
+          ref={(node) => setSectionRef("section-4", node)}
+          data-section-name="section-4"
           className="h-screen snap-start section section-4"
         >
-          <SectionStory />
+          <SectionConnect />
         </section>
-
-        <div className="intro-circle top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="intro-circle -top-20 -right-28"></div>
-        <div className="intro-circle -bottom-20 -left-28"></div>
       </main>
     </>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { convertMonthsToString, findHighestMonths } from "../_lib/months";
 import ProgressBar from "./ProgressBar";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
 export default function SectionExperience({ skills }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -18,10 +19,10 @@ export default function SectionExperience({ skills }) {
   };
 
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center relative">
       <div
-        className="flex flex-col gap-4"
-        style={{ marginLeft: "24vw", width: "48vw", height: "72vh" }}
+        className="select-none absolute bg-background-start rounded-2xl overflow-hidden px-8 py-4 flex flex-col gap-2"
+        style={{ right: 0, marginRight: "6vw", width: "64vw", height: "36vw" }}
       >
         <div className="flex gap-4 items-center">
           <div className="opacity-30 w-16 h-16 border border-solid border-foreground rounded-full flex justify-center items-center">
@@ -52,14 +53,15 @@ export default function SectionExperience({ skills }) {
             ))}
           </div>
           <button
-            className="px-4 py-2 rounded-lg bg-background-start uppercase font-extralight hover:font-normal hover:text-primary"
+            className="px-4 py-2 rounded-lg flex gap-2 items-center bg-background-middle uppercase font-extralight hover:font-normal hover:text-primary"
             onClick={handleDownloadResume}
           >
             Download Resume
+            <ExternalLink size={14} />
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 mt-8">
+        <div className="flex-1 flex flex-col gap-4 pt-6 overflow-y-auto">
           <div className="flex gap-8 font-bold">
             <h4 className="w-3/12 pl-9">Skills</h4>
             <h4 className="w-4/12">Professional Exp.</h4>
@@ -97,8 +99,7 @@ export default function SectionExperience({ skills }) {
                       current={data.pro_exp_months}
                       max={findHighestMonths(skill.data)}
                       rgbaColor={data.rgba_color}
-                      activeTab={activeTab}
-                      index={index}
+                      animator={activeTab}
                     />
                   </div>
 
@@ -111,8 +112,7 @@ export default function SectionExperience({ skills }) {
                       current={data.personal_exp_months}
                       max={findHighestMonths(skill.data)}
                       rgbaColor={data.rgba_color}
-                      activeTab={activeTab}
-                      index={index}
+                      animator={activeTab}
                     />
                   </div>
                 </div>

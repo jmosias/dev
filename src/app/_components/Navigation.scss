@@ -30,9 +30,9 @@ $link-letter-spacing: 0.5vw;
   transition: all $transition-time $transition-timing;
 }
 
-$base-pos-right: 70vw;
+$base-pos-right: 77vw;
 $base-pos-top: 10vh;
-$base-pos-left: 75vw;
+$base-pos-left: 79vw;
 $base-pos-bottom: 80vh;
 
 $base-pos-center-v: 50vh;
@@ -51,10 +51,10 @@ $base-vertical-margin: 3vh;
 $left-padding-fix: 0.5vw;
 
 // Character counts for each link
-$l1-cc: 5;
+$l1-cc: 7;
 $l2-cc: 8;
 $l3-cc: 10;
-$l4-cc: 5;
+$l4-cc: 6;
 
 /*
   Formula to calculate the total width of text based on 

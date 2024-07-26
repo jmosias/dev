@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
-const ProgressBar = ({ current, max, rgbaColor, activeTab }) => {
+const ProgressBar = ({ current, max, rgbaColor, animator }) => {
   const [width, setWidth] = useState(0);
   const progressBarRef = useRef(null);
 
@@ -45,7 +45,7 @@ const ProgressBar = ({ current, max, rgbaColor, activeTab }) => {
 
   useEffect(() => {
     animateProgressBar();
-  }, [activeTab, animateProgressBar]);
+  }, [animator, animateProgressBar]);
 
   const gradient = `linear-gradient(to right, ${rgbaColor.replace(
     /[\d.]+\)$/g,
@@ -54,7 +54,7 @@ const ProgressBar = ({ current, max, rgbaColor, activeTab }) => {
 
   return (
     <div className="w-full" ref={progressBarRef}>
-      <div className="bg-background-start" style={{ height: "1px" }}>
+      <div className="bg-background-end" style={{ height: "1px" }}>
         <div
           className="h-full transition-all duration-1000"
           style={{
@@ -68,39 +68,3 @@ const ProgressBar = ({ current, max, rgbaColor, activeTab }) => {
 };
 
 export default ProgressBar;
-
-// OLD ONE THAT WORKS
-
-// import { useEffect, useState } from "react";
-
-// const ProgressBar = ({ current, max, rgbaColor }) => {
-//   const [width, setWidth] = useState(0);
-
-//   useEffect(() => {
-//     const percentage = (current / max) * 100;
-//     setTimeout(() => {
-//       setWidth(percentage);
-//     }, 200);
-//   }, [current, max]);
-
-//   const gradient = `linear-gradient(to right, ${rgbaColor.replace(
-//     /[\d.]+\)$/g,
-//     "0.33)"
-//   )}, ${rgbaColor})`;
-
-//   return (
-//     <div className="w-full">
-//       <div className="bg-background-start" style={{ height: "1px" }}>
-//         <div
-//           className="h-full transition-all duration-1000"
-//           style={{
-//             width: `${width}%`,
-//             background: gradient,
-//           }}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProgressBar;
