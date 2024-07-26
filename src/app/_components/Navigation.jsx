@@ -25,7 +25,7 @@ export default function Navigation({
   activeSection,
 }) {
   return (
-    <div className={`nav-container`}>
+    <div className="nav-container">
       <ul className="text-foreground font-bold uppercase">
         {links.map((link) => (
           <li

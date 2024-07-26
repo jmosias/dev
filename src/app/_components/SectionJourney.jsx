@@ -1,26 +1,25 @@
-import { useState, useEffect } from "react";
-import { ExternalLink, Volume2, VolumeX } from "lucide-react";
+import { useState } from "react";
+import {
+  CirclePlay,
+  ExternalLink,
+  LogOut,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { Howl } from "howler";
 import Image from "next/image";
 import ProgressBar from "./ProgressBar";
 
-export default function SectionStory({ scenes, credits, metadata }) {
+export default function SectionJourney({ scenes, credits, metadata }) {
   const maxScenes = scenes.length - 1;
   const [activeScene, setActiveScene] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [hasEnded, setHasEnded] = useState(false);
   const [sceneProgress, setSceneProgress] = useState(0);
   const [bgMusic, setBgMusic] = useState(null);
-  const [musicMuted, setMusicMuted] = useState(true);
+  const [musicMuted, setMusicMuted] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (bgMusic) {
-      bgMusic.on("play", () => {
-        setMusicMuted(false);
-      });
-    }
-  }, [bgMusic]);
+  const [preloadedImages, setPreloadedImages] = useState({});
 
   const handleMenu = () => {
     setHasEnded(false);
@@ -45,13 +44,24 @@ export default function SectionStory({ scenes, credits, metadata }) {
       metadata.bg_credits.image,
       ...scenes.map((scene) => scene.image),
     ];
+
     const imagePromises = imagesToLoad.map(
       (src) =>
         new Promise((resolve) => {
           const img = new window.Image();
           img.src = src;
-          img.onload = resolve;
+          img.onload = () => {
+            setPreloadedImages((prev) => ({
+              ...prev,
+              [src]: img,
+            }));
+            resolve();
+          };
         })
+    );
+
+    const minimumLoadingTime = new Promise((resolve) =>
+      setTimeout(resolve, 1000)
     );
 
     const music = new Howl({
@@ -60,13 +70,13 @@ export default function SectionStory({ scenes, credits, metadata }) {
       volume: 0,
     });
 
-    Promise.all(imagePromises).then(() => {
+    Promise.all([Promise.all(imagePromises), minimumLoadingTime]).then(() => {
       setBgMusic(music);
       music.play();
       music.fade(0, 0.3, 1000);
-      setLoading(false);
       setHasStarted(true);
       setSceneProgress(1);
+      setLoading(false);
     });
   };
 
@@ -103,13 +113,13 @@ export default function SectionStory({ scenes, credits, metadata }) {
         className="select-none absolute bg-background-start rounded-2xl overflow-hidden"
         style={{ left: 0, marginLeft: "6vw", width: "64vw", height: "36vw" }}
       >
+        {/* Audio Controller */}
         {hasStarted && (
-          // Audio Controller
-          <div className="absolute top-0 right-0 flex flex-col items-center p-2 z-20 bg-background-start border-l border-b border-background-end rounded-bl-2xl hover:text-primary">
-            <button
-              className="uppercase text-sm tracking-widest"
-              onClick={toggleMusic}
-            >
+          <div
+            className="cursor-pointer absolute top-0 right-0 flex flex-col items-center p-2 z-20 bg-background-start border-l border-b border-background-end rounded-bl-2xl transition-colors hover:text-primary"
+            onClick={toggleMusic}
+          >
+            <button className="uppercase text-sm tracking-widest">
               {musicMuted ? <VolumeX /> : <Volume2 />}
             </button>
           </div>
@@ -126,21 +136,26 @@ export default function SectionStory({ scenes, credits, metadata }) {
         </div>
         <div className="absolute bottom-0 right-0 w-1/6 h-3 bg-background-start z-10"></div>
 
-        {loading && (
-          // Loading Screen
-          <div className="absolute w-full h-full bg-background-start z-20"></div>
-        )}
+        {/* Loading Screen */}
+        <div
+          className={`absolute w-full h-full bg-background-start transition-opacity duration-1000 ${
+            loading ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <p className="absolute bottom-8 right-12">Loading...</p>
+        </div>
 
+        {/* Main Menu */}
         {hasStarted === false && hasEnded === false && !loading && (
-          // Main Menu
           <div className="absolute w-full h-full">
             <Image
               src={metadata.bg_main_menu.image}
               alt={metadata.bg_main_menu.description}
-              width={1600}
-              height={900}
               style={{ filter: "brightness(35%)" }}
-            ></Image>
+              priority
+              fill
+            />
+
             <div className="absolute w-full h-full top-0 flex flex-col justify-center items-center text-foreground">
               <div className="text-center pb-8">
                 <h3 className="font-special text-7xl uppercase tracking-special pl-8">
@@ -150,11 +165,12 @@ export default function SectionStory({ scenes, credits, metadata }) {
                   {metadata.subtitle}
                 </p>
               </div>
-              <div className="absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl">
-                <button
-                  className="cursor-pointer uppercase tracking-widest text-2xl font-extralight hover:text-primary pl-1"
-                  onClick={() => handleStart()}
-                >
+              <div
+                className="cursor-pointer absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl transition-colors hover:text-primary"
+                onClick={() => handleStart()}
+              >
+                <button className="flex flex-col gap-1 items-center uppercase tracking-widest text-xs font-extralight pl-1 ">
+                  <CirclePlay size={40} />
                   Start
                 </button>
               </div>
@@ -162,19 +178,20 @@ export default function SectionStory({ scenes, credits, metadata }) {
           </div>
         )}
 
+        {/* Story Scenes */}
         {hasStarted === true && hasEnded === false && !loading && (
-          // Story Scenes
           <>
             <div
               className="cursor-pointer absolute w-full h-full"
               onClick={() => handleNextScene()}
             >
-              <Image
-                src={scenes[activeScene].image}
-                alt={scenes[activeScene].description}
-                width={1600}
-                height={900}
-              ></Image>
+              {preloadedImages[scenes[activeScene].image] && (
+                <Image
+                  src={scenes[activeScene].image}
+                  alt={scenes[activeScene].description}
+                  fill
+                />
+              )}
               <div className="absolute top-0 w-full h-full flex justify-center">
                 <div className="absolute bottom-3 w-4/6 h-1/6 bg-background-start-tp px-12 py-4 flex items-center rounded-tl-2xl">
                   <p>{scenes[activeScene].script}</p>
@@ -183,19 +200,19 @@ export default function SectionStory({ scenes, credits, metadata }) {
             </div>
             <div className="absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex flex-col justify-around items-center tracking-widest text-sm font-extralight">
               <button
-                className="uppercase hover:text-primary"
+                className="uppercase transition-colors hover:text-primary"
                 onClick={() => handlePreviousScene()}
               >
                 Previous
               </button>
               <button
-                className="uppercase hover:text-primary"
+                className="uppercase transition-colors hover:text-primary"
                 onClick={() => handleNextScene()}
               >
                 Next
               </button>
               <button
-                className="uppercase hover:text-primary"
+                className="uppercase transition-colors hover:text-primary"
                 onClick={() => handleMenu()}
               >
                 Main Menu
@@ -204,15 +221,14 @@ export default function SectionStory({ scenes, credits, metadata }) {
           </>
         )}
 
+        {/* Credit Scene */}
         {hasEnded === true && (
-          // Credits
           <div className="absolute top-0 w-full h-full bg-background-start">
             <Image
               src={metadata.bg_credits.image}
               alt={metadata.bg_credits.description}
-              width={1600}
-              height={900}
               style={{ filter: "brightness(35%)" }}
+              fill
             ></Image>
             <div className="absolute w-full h-full top-0 flex flex-col justify-center items-center gap-8">
               <p className="uppercase font-special tracking-special text-2xl pl-4">
@@ -233,7 +249,7 @@ export default function SectionStory({ scenes, credits, metadata }) {
                           rel="noopener noreferrer"
                           className="select-none"
                         >
-                          <ExternalLink size={14} />
+                          <ExternalLink size={16} />
                         </a>
                       )}
                     </span>
@@ -241,11 +257,12 @@ export default function SectionStory({ scenes, credits, metadata }) {
                 ))}
               </ul>
             </div>
-            <div className="absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl">
-              <button
-                className="cursor-pointer uppercase tracking-widest text-2xl font-extralight hover:text-primary pl-1"
-                onClick={() => handleMenu()}
-              >
+            <div
+              className="cursor-pointer absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl transition-colors hover:text-primary"
+              onClick={() => handleMenu()}
+            >
+              <button className="flex flex-col gap-1 items-center uppercase tracking-widest text-xs font-extralight pl-1 ">
+                <LogOut size={40} />
                 Exit
               </button>
             </div>

@@ -1,12 +1,13 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 
 import Rain from "../_components/Rain";
-import SectionStory from "../_components/SectionStory";
+import Navigation from "../_components/Navigation";
+import MenuBar from "../_components/MenuBar";
+import SectionJourney from "../_components/SectionJourney";
 import SectionProjects from "../_components/SectionProjects";
 import SectionExperience from "../_components/SectionExperience";
 import SectionConnect from "../_components/SectionIntro";
-import Navigation from "../_components/Navigation";
-import { useEffect, useRef, useState } from "react";
 
 import scenesData from "../../data/story_scenes.json";
 import creditsData from "../../data/story_scenes_credits.json";
@@ -91,13 +92,14 @@ export default function Home() {
   }, [sectionRefs]);
 
   return (
-    <>
+    <div className="relative">
       <Rain />
       <Navigation
         scrollToSection={scrollToSection}
         previousSection={previousSection}
         activeSection={activeSection}
       />
+      <MenuBar />
 
       <main className="h-screen w-screen relative snap-y snap-mandatory overflow-x-hidden overflow-y-scroll">
         <section
@@ -105,7 +107,7 @@ export default function Home() {
           data-section-name="section-1"
           className="h-screen snap-start section section-1"
         >
-          <SectionStory
+          <SectionJourney
             scenes={scenesData}
             credits={creditsData}
             metadata={storyMetadata}
@@ -136,6 +138,6 @@ export default function Home() {
           <SectionConnect />
         </section>
       </main>
-    </>
+    </div>
   );
 }

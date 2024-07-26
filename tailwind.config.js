@@ -26,13 +26,6 @@ module.exports = {
         "background-middle": "var(--background-middle)",
         "background-end": "var(--background-end)",
       },
-      transitionProperty: {
-        opacity: "opacity",
-      },
-      opacity: {
-        0: "0",
-        100: "1",
-      },
     },
   },
   plugins: [],
