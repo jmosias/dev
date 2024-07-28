@@ -3,7 +3,7 @@ import "./ProjectCard.scss";
 
 export default function ProjectCard({ project }) {
   return (
-    <div className="card flipped">
+    <div className="card">
       <div className="inner">
         {/* Front of the Card*/}
         <div className="front bg-background-middle overflow-hidden relative">

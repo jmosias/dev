@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  CirclePlay,
-  ExternalLink,
-  LogOut,
-  Volume2,
-  VolumeX,
-} from "lucide-react";
+import { Play, ExternalLink, LogOut, Volume2, VolumeX } from "lucide-react";
 import { Howl } from "howler";
 import Image from "next/image";
 import ProgressBar from "./ProgressBar";
@@ -170,7 +164,7 @@ export default function SectionJourney({ scenes, credits, metadata }) {
                 onClick={() => handleStart()}
               >
                 <button className="flex flex-col gap-1 items-center uppercase tracking-widest text-xs font-extralight pl-1 ">
-                  <CirclePlay size={40} />
+                  <Play size={40} />
                   Start
                 </button>
               </div>

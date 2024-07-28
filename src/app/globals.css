@@ -13,12 +13,16 @@
   --primary: #e25822;
 }
 
-.gradient-bg {
-  background: linear-gradient(
-    to top,
-    var(--background-start) 0%,
-    var(--background-end) 100%
-  );
+*::-webkit-scrollbar {
+  width: 0.2vw;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--background-start);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
 }
 
 .section {

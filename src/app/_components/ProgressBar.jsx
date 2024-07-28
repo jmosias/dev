@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useState, useRef, useCallback } from "react";
 
-const ProgressBar = ({ current, max, rgbaColor, animator }) => {
+export default function ProgressBar({ current, max, rgbaColor, animator }) {
   const [width, setWidth] = useState(0);
   const progressBarRef = useRef(null);
 
@@ -65,6 +67,4 @@ const ProgressBar = ({ current, max, rgbaColor, animator }) => {
       </div>
     </div>
   );
-};
-
-export default ProgressBar;
+}

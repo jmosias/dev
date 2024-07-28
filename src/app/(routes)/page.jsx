@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import Rain from "../_components/Rain";
+import RainBackground from "../_components/RainBackground";
+import CircleBackground from "../_components/CircleBackground";
 import Navigation from "../_components/Navigation";
 import MenuBar from "../_components/MenuBar";
+
 import SectionJourney from "../_components/SectionJourney";
 import SectionProjects from "../_components/SectionProjects";
 import SectionExperience from "../_components/SectionExperience";
@@ -92,8 +94,9 @@ export default function Home() {
   }, [sectionRefs]);
 
   return (
-    <div className="relative">
-      <Rain />
+    <div className="relative overflow-hidden">
+      <RainBackground />
+      <CircleBackground />
       <Navigation
         scrollToSection={scrollToSection}
         previousSection={previousSection}

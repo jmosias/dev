@@ -80,7 +80,7 @@ export default function Navigation({
             <p
               className={`diamond-link ${
                 activeSection === link.section
-                  ? "text-primary"
+                  ? "text-primary active"
                   : "text-foreground"
               }`}
             >

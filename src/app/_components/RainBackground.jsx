@@ -1,9 +1,9 @@
 import React from "react";
-import "./Rain.scss";
+import "./RainBackground.scss";
 
-const NUM_RAINDROPS = 50;
+const NUM_RAINDROPS = 100;
 
-const Rain = () => {
+export default function RainBackground() {
   return (
     <div className="rain-container">
       {[...Array(NUM_RAINDROPS)].map((_, index) => (
@@ -19,6 +19,4 @@ const Rain = () => {
       ))}
     </div>
   );
-};
-
-export default Rain;
+}

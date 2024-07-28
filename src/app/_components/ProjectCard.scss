@@ -10,17 +10,18 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.8s;
-  }
-
-  &:hover .inner {
     transform: rotateY(180deg);
   }
 
-  &.flipped:hover .inner {
+  &:hover .inner {
     transform: rotateY(0);
   }
 
-  &.flipped .inner {
+  .front {
+    transform: rotateY(0);
+  }
+
+  .back {
     transform: rotateY(180deg);
   }
 

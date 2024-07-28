@@ -39,7 +39,7 @@
   }
 }
 
-@for $i from 1 through 50 {
+@for $i from 1 through 100 {
   $top: (random(50) + 50) * 1%;
   $left: random(100) * 1%;
   $opacity: (random(30) + 30) * 0.01;

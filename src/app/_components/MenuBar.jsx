@@ -9,7 +9,7 @@ export default function MenuBar() {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 flex flex-col text-foreground z-10 rounded-tr-2xl overflow-hidden py-4 bg-background-start">
+    <div className="absolute bottom-0 left-0 flex text-foreground z-10 rounded-tr-2xl overflow-hidden px-4 bg-background-start">
       <a
         className="cursor-pointer p-4 transition-colors hover:text-primary"
         href={links.github}

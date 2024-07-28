@@ -63,62 +63,64 @@ export default function SectionExperience({ skills }) {
 
         <div className="flex-1 flex flex-col gap-4 pt-6 overflow-y-auto">
           <div className="flex gap-8 font-bold">
-            <h4 className="w-3/12 pl-9">Skills</h4>
+            <h4 className="w-3/12 pl-12">Skills</h4>
             <h4 className="w-4/12">Professional Exp.</h4>
             <h4 className="w-4/12">incl. Personal Exp.</h4>
           </div>
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className={`flex flex-col gap-4 ${
-                activeTab === index ? "block" : "hidden"
-              }`}
-            >
-              {skill.data.map((data) => (
-                <div
-                  key={data.id}
-                  className="flex justify-center items-center gap-8 font-extralight"
-                >
-                  <div className="w-3/12 flex items-center gap-4">
-                    <Image
-                      src={data.devicon_src}
-                      alt={data.name}
-                      width={16}
-                      height={16}
-                      className={data.inverted ? "invert" : ""}
-                    />
-                    <p>{data.name}</p>
-                  </div>
+          <div className="px-3 flex flex-col gap-4 overflow-y-auto">
+            {skills.map((skill, index) => (
+              <div
+                key={index}
+                className={`flex flex-col gap-4 ${
+                  activeTab === index ? "block" : "hidden"
+                }`}
+              >
+                {skill.data.map((data) => (
+                  <div
+                    key={data.id}
+                    className="flex justify-center items-center gap-8 font-extralight"
+                  >
+                    <div className="w-3/12 flex items-center gap-4">
+                      <Image
+                        src={data.devicon_src}
+                        alt={data.name}
+                        width={16}
+                        height={16}
+                        className={data.inverted ? "invert" : ""}
+                      />
+                      <p>{data.name}</p>
+                    </div>
 
-                  <div className="w-4/12 flex flex-col gap-1">
-                    <p className="text-sm">
-                      {convertMonthsToString(data.pro_exp_months)}
-                    </p>
-                    <ProgressBar
-                      className="flex-1"
-                      current={data.pro_exp_months}
-                      max={findHighestMonths(skill.data)}
-                      rgbaColor={data.rgba_color}
-                      animator={activeTab}
-                    />
-                  </div>
+                    <div className="w-4/12 flex flex-col gap-1">
+                      <p className="text-sm">
+                        {convertMonthsToString(data.pro_exp_months)}
+                      </p>
+                      <ProgressBar
+                        className="flex-1"
+                        current={data.pro_exp_months}
+                        max={findHighestMonths(skill.data)}
+                        rgbaColor={data.rgba_color}
+                        animator={activeTab}
+                      />
+                    </div>
 
-                  <div className="w-4/12 flex flex-col gap-1">
-                    <p className="text-sm">
-                      {convertMonthsToString(data.personal_exp_months)}
-                    </p>
-                    <ProgressBar
-                      className="flex-1"
-                      current={data.personal_exp_months}
-                      max={findHighestMonths(skill.data)}
-                      rgbaColor={data.rgba_color}
-                      animator={activeTab}
-                    />
+                    <div className="w-4/12 flex flex-col gap-1">
+                      <p className="text-sm">
+                        {convertMonthsToString(data.personal_exp_months)}
+                      </p>
+                      <ProgressBar
+                        className="flex-1"
+                        current={data.personal_exp_months}
+                        max={findHighestMonths(skill.data)}
+                        rgbaColor={data.rgba_color}
+                        animator={activeTab}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ))}
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
