@@ -2,7 +2,7 @@ import "./Navigation.scss";
 
 const links = [
   {
-    name: "Journey",
+    name: "Intro",
     section: "section-1",
   },
   {
@@ -14,7 +14,7 @@ const links = [
     section: "section-3",
   },
   {
-    name: "Connect",
+    name: "Journey",
     section: "section-4",
   },
 ];

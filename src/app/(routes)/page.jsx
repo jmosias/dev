@@ -6,16 +6,16 @@ import CircleBackground from "../_components/CircleBackground";
 import Navigation from "../_components/Navigation";
 import MenuBar from "../_components/MenuBar";
 
-import SectionJourney from "../_components/SectionJourney";
+import SectionIntro from "../_components/SectionIntro";
 import SectionProjects from "../_components/SectionProjects";
 import SectionExperience from "../_components/SectionExperience";
-import SectionConnect from "../_components/SectionIntro";
+import SectionJourney from "../_components/SectionJourney";
 
+import projectsData from "../../data/projects.json";
+import skillsData from "../../data/skills.json";
 import scenesData from "../../data/story_scenes.json";
 import creditsData from "../../data/story_scenes_credits.json";
 import storyMetadata from "../../data/story_scenes_metadata.json";
-import projectsData from "../../data/projects.json";
-import skillsData from "../../data/skills.json";
 
 function useSectionRefs() {
   const sectionRefs = useRef({
@@ -110,11 +110,7 @@ export default function Home() {
           data-section-name="section-1"
           className="h-screen snap-start section section-1"
         >
-          <SectionJourney
-            scenes={scenesData}
-            credits={creditsData}
-            metadata={storyMetadata}
-          />
+          <SectionIntro />
         </section>
 
         <section
@@ -138,7 +134,11 @@ export default function Home() {
           data-section-name="section-4"
           className="h-screen snap-start section section-4"
         >
-          <SectionConnect />
+          <SectionJourney
+            scenes={scenesData}
+            credits={creditsData}
+            metadata={storyMetadata}
+          />
         </section>
       </main>
     </div>

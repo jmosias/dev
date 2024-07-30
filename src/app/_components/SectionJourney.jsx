@@ -105,7 +105,7 @@ export default function SectionJourney({ scenes, credits, metadata }) {
     <div className="w-full h-full flex justify-center items-center relative">
       <div
         className="select-none absolute bg-background-start rounded-2xl overflow-hidden"
-        style={{ left: 0, marginLeft: "6vw", width: "64vw", height: "36vw" }}
+        style={{ width: "64vw", height: "36vw", marginBottom: "12vh" }}
       >
         {/* Audio Controller */}
         {hasStarted && (
