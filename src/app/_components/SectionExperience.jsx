@@ -4,7 +4,6 @@ import { useState } from "react";
 import { convertMonthsToString, findHighestMonths } from "../_lib/months";
 import ProgressBar from "./ProgressBar";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
 
 export default function SectionExperience({ skills }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -57,7 +56,7 @@ export default function SectionExperience({ skills }) {
             onClick={handleDownloadResume}
           >
             Download Resume
-            <ExternalLink size={14} />
+            <i className="fa-sm fa-solid fa-arrow-up-right-from-square"></i>
           </button>
         </div>
 
@@ -67,7 +66,7 @@ export default function SectionExperience({ skills }) {
             <h4 className="w-4/12">Professional Exp.</h4>
             <h4 className="w-4/12">incl. Personal Exp.</h4>
           </div>
-          <div className="px-3 flex flex-col gap-4 overflow-y-auto">
+          <div className="p-3 flex flex-col gap-4 overflow-y-auto">
             {skills.map((skill, index) => (
               <div
                 key={index}

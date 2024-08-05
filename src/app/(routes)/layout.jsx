@@ -1,5 +1,6 @@
 import { Raleway, Buda } from "next/font/google";
 import "../globals.css";
+import Script from "next/script";
 
 const raleway = Raleway({ weight: ["200", "400", "700"], subsets: ["latin"] });
 const buda = Buda({
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${buda.variable} ${raleway.className} overflow-hidden`}>
         {children}
       </body>
+      <Script src="https://kit.fontawesome.com/b533e169ec.js"></Script>
     </html>
   );
 }

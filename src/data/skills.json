@@ -27,6 +27,14 @@
         "devicon_src": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
       },
       {
+        "id": "f2b",
+        "name": "Next",
+        "pro_exp_months": "2",
+        "personal_exp_months": "8",
+        "rgba_color": "rgba(255, 255, 255, 1)",
+        "devicon_src": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+      },
+      {
         "id": "f3",
         "name": "Vue",
         "pro_exp_months": "6",

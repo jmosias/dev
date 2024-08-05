@@ -1,10 +1,8 @@
-import { MapPin } from "lucide-react";
-
 export default function SectionIntro() {
   const role = "Full Stack Developer";
   const name = "John Mark Osias";
   const technologies = ["ReactJS", "Typescript", "NodeJS"];
-  const location = "Malolos, Philippines";
+  const location = "Bulacan, Philippines";
 
   return (
     <div className="w-full h-full flex justify-center items-center">
@@ -33,7 +31,7 @@ export default function SectionIntro() {
       </div>
 
       <div className="absolute bottom-3 left-6 flex justify-end items-center gap-2 opacity-65">
-        <MapPin size={16} />
+        <i className="fa-solid fa-location-dot"></i>
         <p className="text-sm">{location}</p>
       </div>
     </div>

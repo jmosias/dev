@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Play, ExternalLink, LogOut, Volume2, VolumeX } from "lucide-react";
 import { Howl } from "howler";
 import Image from "next/image";
 import ProgressBar from "./ProgressBar";
@@ -113,8 +112,12 @@ export default function SectionJourney({ scenes, credits, metadata }) {
             className="cursor-pointer absolute top-0 right-0 flex flex-col items-center p-2 z-20 bg-background-start border-l border-b border-background-end rounded-bl-2xl transition-colors hover:text-primary"
             onClick={toggleMusic}
           >
-            <button className="uppercase text-sm tracking-widest">
-              {musicMuted ? <VolumeX /> : <Volume2 />}
+            <button className="uppercase text-sm tracking-widest w-6 h-6">
+              {musicMuted ? (
+                <i className="fa-solid fa-volume-xmark"></i>
+              ) : (
+                <i className="fa-solid fa-volume-high"></i>
+              )}
             </button>
           </div>
         )}
@@ -163,9 +166,11 @@ export default function SectionJourney({ scenes, credits, metadata }) {
                 className="cursor-pointer absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl transition-colors hover:text-primary"
                 onClick={() => handleStart()}
               >
-                <button className="flex flex-col gap-1 items-center uppercase tracking-widest text-xs font-extralight pl-1 ">
-                  <Play size={40} />
-                  Start
+                <button className="flex flex-col gap-1 justify-center items-center">
+                  <i className="fa-2xl fa-solid fa-play my-4"></i>
+                  <p className="uppercase tracking-widest text-xs font-extralight">
+                    Start
+                  </p>
                 </button>
               </div>
             </div>
@@ -241,9 +246,9 @@ export default function SectionJourney({ scenes, credits, metadata }) {
                           href={credit.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="select-none"
+                          className="select-none transition-colors hover:text-primary"
                         >
-                          <ExternalLink size={16} />
+                          <i className="fa-sm fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                       )}
                     </span>
@@ -255,9 +260,11 @@ export default function SectionJourney({ scenes, credits, metadata }) {
               className="cursor-pointer absolute bottom-3 right-0 w-1/6 h-1/6 bg-background-start p-2 flex justify-center items-center border-t border-l border-background-end rounded-tl-2xl transition-colors hover:text-primary"
               onClick={() => handleMenu()}
             >
-              <button className="flex flex-col gap-1 items-center uppercase tracking-widest text-xs font-extralight pl-1 ">
-                <LogOut size={40} />
-                Exit
+              <button className="flex flex-col gap-1 justify-center items-center">
+                <i className="fa-2xl fa-solid fa-arrow-right-from-bracket my-4"></i>
+                <p className="uppercase tracking-widest text-xs font-extralight">
+                  Exit
+                </p>
               </button>
             </div>
           </div>
