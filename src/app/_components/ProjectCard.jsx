@@ -12,11 +12,11 @@ export default function ProjectCard({ project }) {
   return (
     <div className="card">
       {/* Card Description */}
-      <div className="absolute card-desc bg-background-start text-sm font-extralight border-2 border-background-middle flex flex-col justify-center items-center overflow-hidden text-center">
+      <div className="absolute card-desc bg-background-start font-extralight border-2 border-background-middle flex flex-col justify-center items-center overflow-hidden text-center">
         <div className="filler"></div>
         <div className="desc flex flex-col justify-center items-center gap-1">
           {project.role ? (
-            <p className="uppercase font-bold text-xs">
+            <p className="role uppercase font-bold">
               Role - <span>{project.role}</span>
             </p>
           ) : (
@@ -47,17 +47,17 @@ export default function ProjectCard({ project }) {
                       />
                     </div>
                     <div className="tech-name bg-background-start flex items-center">
-                      <p className="text-xs">{project.technologies[index]}</p>
+                      <p>{project.technologies[index]}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               <div className="front-design-desc bg-background-start text-center">
-                <h2 className="font-special uppercase tracking-special pl-2 text-2xl">
+                <h2 className="font-special uppercase tracking-special pl-2">
                   {project.name}
                 </h2>
-                <p className="text-xs mt-1 text-primary opacity-60">
+                <p className="mt-1 text-primary opacity-60">
                   {project.short_description}
                 </p>
               </div>

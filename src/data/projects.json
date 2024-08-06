@@ -3,7 +3,7 @@
     "id": "0",
     "name": "Osias",
     "short_description": "Dev Portfolio",
-    "card_image": "/images/temporary.png",
+    "card_image": "/images/cards/osias.png",
     "technologies": ["React", "Next", "Tailwind CSS", "SASS"],
     "description": "You are here",
     "role": ""
@@ -12,7 +12,7 @@
     "id": "1",
     "name": "Becric",
     "short_description": "Gaming Portal Website",
-    "card_image": "/images/temporary.png",
+    "card_image": "/images/cards/becric.png",
     "technologies": ["TypeScript", "Vue", "Tailwind CSS", "SASS"],
     "description": "Redeveloped the existing site from scratch for a newer modern design",
     "role": "Frontend"
@@ -21,7 +21,7 @@
     "id": "2",
     "name": "Wisp",
     "short_description": "Image Editing Assistant",
-    "card_image": "/images/temporary.png",
+    "card_image": "/images/cards/wisp.png",
     "technologies": ["React", "Next", "SASS", "Node.js", "MongoDB"],
     "description": "Developed a specialized app to speed up image editing process for a business owner",
     "role": "Full Stack"
@@ -30,7 +30,7 @@
     "id": "3",
     "name": "Amstel",
     "short_description": "Project Management Web App",
-    "card_image": "/images/temporary.png",
+    "card_image": "/images/cards/amstel.png",
     "technologies": ["Node.js", "MongoDB", "Jest"],
     "description": "Enhanced system security by resolving issues and mitigating potential risks",
     "role": "Back End"
